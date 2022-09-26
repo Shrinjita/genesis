@@ -1,98 +1,68 @@
-class FileHandling :
-    n = 4
-   // @staticmethod
-    import sys
- def create() : 
-  try:
-     file = open ( "filethatdoesnotexist.txt", 'r' )
-   except IOError, e:
-     print e
-print sys.exc_type
-something()
-   
-        br =  java.io.BufferedReader( java.io.InputStreamReader(java.io.BufferedInputStream@33e5ccce))
-        fw =  java.io.FileWriter("Stud.dat")
-        bw =  java.io.BufferedWriter(fw)
-        pw =  java.io.PrintWriter(bw)
-        print("Enter Record :")
-        i = 1
-        while (i <= FileHandling.n) :
-            print("Name ", end ="")
-            name = br.readLine()
-            print("Roll ", end ="")
-            roll = int(br.readLine())
-            print("Marks ", end ="")
-            marks = int(br.readLine())
-            name = name + " " + str(roll) + " " + str(marks)
-            pw.println(name)
-            i += 1
-             pw.close()
-            create()
-       
-   // @staticmethod
-    def read() :  
-         try:
-     file = open ( "filethatdoesnotexist.txt", 'r' )
-   except IOError, br:
-        fw =  java.io.FileReader("Stud.dat")
-        br =  java.io.BufferedReader(fw)
-        mat = " "
-        print("name\troll\tmarks")
-        while ((
-        mat = br.readLine()) != None) :
-            str =  java.util.StringTokenizer(mat)
-            name = str.nextToken()
-            roll = int(str.nextToken())
-            mark = int(str.nextToken())
-            print(name + "\t" + str(roll) + "\t" + str(mark))
-        br.close()
-    //@staticmethod
-    def sort() :  
-         try:
-     file = open ( "filethatdoesnotexist.txt", 'r' )
-   except IOError, br:
-        temp = 0
-        t = ""
-        fr =  java.io.FileReader("Stud.dat")
-        br =  java.io.BufferedReader(fr)
-        mat = " "
-        a = [0] * (FileHandling.n)
-        b = [0] * (FileHandling.n)
-        i = 0
-        c = [None] * (FileHandling.n)
-        while ((
-        mat = br.readLine()) != None) :
-            str =  java.util.StringTokenizer(mat)
-            name = str.nextToken()
-            roll = int(str.nextToken())
-            mark = int(str.nextToken())
-            b[i] = roll
-            a[i] = mark
-            c[i += 1] = name
-        br.close()
-        # sort array
-        i = 0
-        while (i < FileHandling.n - 1) :
-            j = 0
-            while (j < FileHandling.n - i - 1) :
-                if (a[j] > a[j + 1]) :
-                    temp = a[j]
-                    a[j] = a[j + 1]
-                    a[j + 1] = temp
-                    temp = b[j]
-                    b[j] = b[j + 1]
-                    b[j + 1] = temp
-                    t = c[j]
-                    c[j] = c[j + 1]
-                    c[j + 1] = t
-                j += 1
-            i += 1
-        fw =  java.io.FileWriter("Stud.dat")
-        bw =  java.io.BufferedWriter(fw)
-        pw =  java.io.PrintWriter(bw)
-        i = 0
-        while (i < FileHandling.n) :
-            name = c[i] + " " + str(b[i]) + " " + str(a[i])
-            pw.println(name)
-            i += 1
-        pw.close()
+import java.util.*;
+import java.io.*;
+ class FileHandling
+{ static int n=4;
+    static void create()throws IOException
+    {BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+     FileWriter fw= new FileWriter("Stud.dat");
+     BufferedWriter bw= new BufferedWriter(fw);
+     PrintWriter pw= new PrintWriter(bw);
+     System.out.println("Enter Record :");
+     for(int i=1;i<=n;i++)
+     {System.out.print("Name ");
+      String name= br.readLine();
+      System.out.print("Roll ");
+      int roll= Integer.parseInt(br.readLine());
+      System.out.print("Marks ");
+      int marks= Integer.parseInt(br.readLine());
+      name=name+" "+roll+" "+marks;
+      pw.println(name);
+    }
+    pw.close();
+    }
+  static void read()throws IOException
+  {FileReader fw= new FileReader("Stud.dat"); 
+   BufferedReader br= new BufferedReader(fw);
+   String mat=" ";
+   System.out.println("name\troll\tmarks");
+   while((mat=br.readLine())!=null)
+   {StringTokenizer str=new StringTokenizer(mat);
+    String name= str.nextToken();
+    int roll= Integer.parseInt(str.nextToken());
+    int mark= Integer.parseInt(str.nextToken());
+    System.out.println(name +"\t"+roll+"\t"+ mark);
+   }
+   br.close();
+  }
+  static void sort()throws IOException
+  {int temp=0;String t="";
+   FileReader fr= new FileReader("Stud.dat");
+   BufferedReader br= new BufferedReader(fr);
+   String mat=" ";
+   int a[]=new int[n], b[]=new int[n],i=0; String c[]=new String[n];
+   while((mat=br.readLine())!=null)
+   {StringTokenizer str=new StringTokenizer(mat);
+    String name= str.nextToken();
+    int roll= Integer.parseInt(str.nextToken());
+    int mark= Integer.parseInt(str.nextToken());
+    b[i]=roll;a[i]=mark;c[i++]=name;
+   }
+   br.close();
+   //sort array
+   for(i=0;i<n-1;i++)
+   for(int j=0;j<n-i-1;j++)
+   if(a[j]>a[j+1])
+   {temp=a[j];a[j]=a[j+1];a[j+1]=temp;
+    temp=b[j];b[j]=b[j+1];b[j+1]=temp;
+    t=c[j];c[j]=c[j+1];c[j+1]=t;
+   }
+   FileWriter fw= new FileWriter("Stud.dat");
+   BufferedWriter bw= new BufferedWriter(fw);
+   PrintWriter pw= new PrintWriter(bw);
+   for(i=0;i<n;i++)
+   {String name=c[i]+ " " +b[i]+ " " +a[i];
+    pw.println(name);
+   }
+   pw.close();
+}
+}
